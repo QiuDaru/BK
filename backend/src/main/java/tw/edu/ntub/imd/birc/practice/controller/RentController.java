@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import tw.edu.ntub.imd.birc.practice.bean.RentBean;
+import tw.edu.ntub.imd.birc.practice.exception.ResourceNotFoundException;
 import tw.edu.ntub.imd.birc.practice.service.RentService;
 import tw.edu.ntub.imd.birc.practice.util.http.BindingResultUtils;
 import tw.edu.ntub.imd.birc.practice.util.http.ResponseEntityBuilder;
@@ -28,7 +29,6 @@ public class RentController {
             obj.add("item", bean.getItem());
             obj.add("categoryName", bean.getCategoryName());
             obj.add("photoLink", bean.getPhotoLink());
-            obj.add("ownerName", bean.getOwnerName());
             obj.add("remark", bean.getRemark());
         }
         return ResponseEntityBuilder.success().message("查詢成功").data(arrayData).build();
@@ -37,13 +37,12 @@ public class RentController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<String> getRent(@PathVariable Integer id) {
         RentBean bean = rentService.getById(id)
-                .orElseThrow(() -> new RuntimeException("查無此物品"));
+                .orElseThrow(() -> new ResourceNotFoundException("查無此物品"));
         ObjectData obj = new ObjectData();
         obj.add("id", bean.getId());
         obj.add("item", bean.getItem());
         obj.add("categoryName", bean.getCategoryName());
         obj.add("photoLink", bean.getPhotoLink());
-        obj.add("ownerName", bean.getOwnerName());
         obj.add("remark", bean.getRemark());
         obj.add("rentEnable", bean.getRentEnable());
         return ResponseEntityBuilder.success().message("查詢成功").data(obj).build();

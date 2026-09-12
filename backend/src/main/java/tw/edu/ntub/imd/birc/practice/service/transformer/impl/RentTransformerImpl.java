@@ -7,36 +7,29 @@ import tw.edu.ntub.imd.birc.practice.service.transformer.BeanEntityTransformer;
 
 @Component
 public class RentTransformerImpl implements BeanEntityTransformer<RentBean, Rent> {
-
-    @Override
-    public Rent transferToEntity(RentBean bean) {
-        Rent rent = new Rent();
-        rent.setRentId(bean.getId());
-        rent.setYear(bean.getYear());
-        rent.setUserId(bean.getUserId());
-        rent.setCategoryId(bean.getCategoryId());
-        rent.setItem(bean.getItem());
-        rent.setPhotoId(bean.getPhotoId());
-        rent.setRemark(bean.getRemark());
-        rent.setRentEnable(bean.getRentEnable());
-        return rent;   // user/category/photo 是唯讀關聯，不在這裡塞
+    public Rent transferToEntity(RentBean b) {
+        Rent r = new Rent();
+        r.setRentId(b.getId());
+        r.setYear(b.getYear());
+        r.setCategoryId(b.getCategoryId());
+        r.setItem(b.getItem());
+        r.setRemark(b.getRemark());
+        r.setPhotoLink(b.getPhotoLink());
+        r.setRentEnable(b.getRentEnable());
+        return r;
     }
 
-    @Override
-    public RentBean transferToBean(Rent rent) {
-        RentBean bean = new RentBean();
-        bean.setId(rent.getRentId());
-        bean.setYear(rent.getYear());
-        bean.setUserId(rent.getUserId());
-        bean.setCategoryId(rent.getCategoryId());
-        bean.setItem(rent.getItem());
-        bean.setPhotoId(rent.getPhotoId());
-        bean.setRemark(rent.getRemark());
-        bean.setRentEnable(rent.getRentEnable());
-        bean.setCreateTime(rent.getCreateTime());
-        if (rent.getCategory() != null) bean.setCategoryName(rent.getCategory().getCategory());
-        if (rent.getPhoto() != null)    bean.setPhotoLink(rent.getPhoto().getLink());
-        if (rent.getUser() != null)     bean.setOwnerName(rent.getUser().getChineseName());
-        return bean;
+    public RentBean transferToBean(Rent r) {
+        RentBean b = new RentBean();
+        b.setId(r.getRentId());
+        b.setYear(r.getYear());
+        b.setCategoryId(r.getCategoryId());
+        b.setItem(r.getItem());
+        b.setRemark(r.getRemark());
+        b.setPhotoLink(r.getPhotoLink());
+        b.setRentEnable(r.getRentEnable());
+        b.setCreateTime(r.getCreateTime());
+        if (r.getCategory() != null) b.setCategoryName(r.getCategory().getCategory());
+        return b;
     }
 }

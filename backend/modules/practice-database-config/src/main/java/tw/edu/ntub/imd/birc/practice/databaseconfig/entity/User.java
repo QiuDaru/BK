@@ -48,7 +48,10 @@ public class User {
     private LocalDateTime createTime;
 
     @Column(name = "modify_time")
-    private LocalDateTime modifyTime;
+    private LocalDateTime modifyTim;
+
+    @Column(name = "account_name")
+    private String accountName;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
