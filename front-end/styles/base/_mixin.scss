@@ -1,0 +1,70 @@
+// RWD setting
+@mixin X-Large {
+  @media(max-width:1440px) {
+    @content;
+  }
+}
+
+@mixin Large {
+  @media(max-width:1200px) {
+    @content;
+  }
+}
+
+@mixin Medium {
+  @media(max-width:1024px) {
+    @content;
+  }
+}
+
+@mixin Small {
+  @media(max-width:768px) {
+    @content;
+  }
+}
+
+@mixin X-Small {
+  @media(max-width:480px) {
+    @content;
+  }
+}
+
+@mixin tableHeaderBar {
+  display: table-header-group;
+
+  tr {
+    margin: 8px 16px 12px;
+  }
+
+  th {
+    background-color: $mainColor;
+    color: #ffffff;
+    padding: 10px 12px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+  }
+
+  th:first-child {
+    border-top-left-radius: $radius-card;
+  }
+
+  th:last-child {
+    border-top-right-radius: $radius-card;
+  }
+}
+
+@mixin filterGroupBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8fafc;
+  padding: 8px 16px;
+  border-radius: $radius-card;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
