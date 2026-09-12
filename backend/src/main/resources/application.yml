@@ -4,6 +4,9 @@ springdoc:
 spring:
   application:
     name: practice
+  security:
+    jwt:
+      secret: "fS1bHbOyi6PiZ0ze9AD6a1ASxiVjNif-SAy2_y4pLY7dVr4WLIc-8wvh5x2kpl4DK-tW1B7yv69Het-phI6a0Q"
   main:
     banner-mode: off
     allow-bean-definition-overriding: true
