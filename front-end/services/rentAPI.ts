@@ -1,11 +1,11 @@
 import API from '@/lib/api/api';
-import { RentItem, CreateRentInput, UpdateRentInput } from '@/lib/types/rentType';
+import { RentItem, CreateRentInput, UpdateRentInput, RentListResponse } from '@/lib/types/rentType';
 import { Response } from '@/lib/types/requestType';
 
 const BASE_URL = '/rents';
 
 const rentAPI = {
-    getAllRent: (): Promise<Response<RentItem[]>> =>
+    getAllRent: (): Promise<Response<RentItem>> =>
         API.get(`${BASE_URL}`).then((res) => res.data),
 
     getRent: (id: string): Promise<Response<RentItem>> =>

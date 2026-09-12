@@ -3,19 +3,79 @@
   min-height: 100vh;
   background: $background;
   color: $text;
+
+  .postButton {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 50;
+
+  padding: 0.9rem 1.4rem;
+  border: none;
+  border-radius: 0.75rem;
+  background: var(--color-primary);
+  color: #000;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    right: 1.25rem;
+    bottom: 1.25rem;
+    padding: 0.85rem 1.2rem;
+  }
+}
 }
 
-.rent{
+.rent {
+  display: flex;
+  flex-direction: column;
+
+  .header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
 
-    .header{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+    .title {
+      font-size: 50px;
+      margin: 2rem 5rem;
     }
-    .itemList{
-        
+  }
+  .cardGrid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
+
+    @media (max-width: 1280px) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
 }
-
