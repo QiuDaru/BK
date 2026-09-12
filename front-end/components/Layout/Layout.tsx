@@ -1,5 +1,5 @@
 import Head from "next/head";
-import SideBar from "@/components/Layout/SideBar";
+import SideBar from "@/components/Layout/NavBar";
 import styles from "@/styles/Components/Layout.module.scss";
 
 export default function Layout({
@@ -20,14 +20,10 @@ export default function Layout({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.layout}>
+      <main className={styles.page}>
         <SideBar />
 
-        <div className={styles.mainWrapper}>
-          <div className={styles.content}>
-            {children}
-          </div>
-        </div>
+        {children}
       </main>
     </>
   );

@@ -6,22 +6,8 @@ export default function Home() {
   const { hero, actions, guide } = homeContent;
 
   return (
-    <>
-      <main className={styles.page}>
-        <header className={styles.navbar}>
-          <div className={styles.navInner}>
-            <a className={styles.logo} href="/">
-              {homeContent.brand}
-            </a>
-            <nav className={styles.nav}>
-              <a>工具</a>
-              <a>課程</a>
-              <a>分享</a>
-            </nav>
-            <button className={styles.loginButton}>登入</button>
-          </div>
-        </header>
-
+    <Layout>
+      <div className={styles.page}>
         <section className={styles.hero}>
           <div className={styles.heroInner}>
             <p className={styles.eyebrow}>{hero.eyebrow}</p>
@@ -38,7 +24,6 @@ export default function Home() {
 
           <div className={styles.actionGrid}>
             {actions.items.map((item) => {
-              // const Icon = item.icon;
               return (
                 <a
                   className={styles.actionCard}
@@ -77,7 +62,7 @@ export default function Home() {
           <span>{homeContent.brand}</span>
           <span>{homeContent.footer}</span>
         </footer>
-      </main>
-    </>
+      </div>
+    </Layout>
   );
 }
