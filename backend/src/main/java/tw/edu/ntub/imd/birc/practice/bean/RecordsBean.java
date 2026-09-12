@@ -4,24 +4,16 @@ import lombok.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-@Getter @Setter
+@Data
 public class RecordsBean {
     private Integer id;
-
-    @NotNull(message = "物品不得為空")
-    private Integer rentId;
-
-    @NotNull(message = "借用人不得為空")
-    private Integer userId;
-
-    @NotNull(message = "預計歸還日不得為空")
-    private LocalDateTime dueDate;   // 對應 records.return_date
-
-    // ↓ 回應用（唯讀）
-    private Integer categoryId;
-    private String status;           // BORROWED / RETURNED
+    @NotNull(message = "物品不得為空")   private Integer rentId;
+    @NotNull(message = "出借人不得為空") private Integer lendUserId;
+    @NotNull(message = "借用人不得為空") private Integer borrowUserId;
+    @NotNull(message = "預計歸還日不得為空") private LocalDateTime dueDate;
+    // 唯讀
+    private String status;
     private boolean overdue;
     private LocalDateTime returnDate;
-    private LocalDateTime createTime; // 借出時間
-    private LocalDateTime modifyTime; // 實際歸還時間
+    private LocalDateTime createTime;
 }

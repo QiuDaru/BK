@@ -41,7 +41,7 @@ public class RentServiceImpl extends BaseServiceImpl<RentBean, Rent, Integer> im
         if (bean.getYear() != null)       rent.setYear(bean.getYear());
         if (bean.getCategoryId() != null) rent.setCategoryId(bean.getCategoryId());
         if (bean.getItem() != null)       rent.setItem(bean.getItem());
-        if (bean.getPhotoId() != null)    rent.setPhotoId(bean.getPhotoId());
+        if (bean.getPhotoLink() != null)  rent.setPhotoLink(bean.getPhotoLink());
         if (bean.getRemark() != null)     rent.setRemark(bean.getRemark());
         rent.setModifyTime(LocalDateTime.now());
         rentDAO.save(rent);

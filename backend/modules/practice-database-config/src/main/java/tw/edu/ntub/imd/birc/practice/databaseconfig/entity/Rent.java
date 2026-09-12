@@ -4,26 +4,15 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import lombok.*;
 
-@Getter
-@Setter
-@ToString
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "rent")
+@Getter @Setter @ToString @Builder @NoArgsConstructor @AllArgsConstructor
+@Entity @Table(name = "rent")
 public class Rent {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rent_id")
     private Integer rentId;
 
     @Column(name = "year")
     private Integer year;
-
-    @Column(name = "user_id")
-    private Integer userId;
 
     @Column(name = "category_id")
     private Integer categoryId;
@@ -31,11 +20,11 @@ public class Rent {
     @Column(name = "item")
     private String item;
 
-    @Column(name = "photo_id")
-    private Integer photoId;
-
     @Column(name = "remark")
     private String remark;
+
+    @Column(name = "photo_link")
+    private String photoLink;
 
     @Builder.Default
     @Column(name = "rent_enable")
@@ -49,16 +38,7 @@ public class Rent {
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user;
-
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
-
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "photo_id", insertable = false, updatable = false)
-    private Photo photo;
+    // 已移除 user / photo 關聯
 }

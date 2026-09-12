@@ -8,13 +8,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RentDAO extends BaseDAO<Rent, Integer> {
-
-    @EntityGraph(attributePaths = {"category", "photo", "user"})
+    @EntityGraph(attributePaths = {"category"})
     List<Rent> findByRentEnableTrueOrderByCreateTimeDesc();
 
-    @EntityGraph(attributePaths = {"category", "photo", "user"})
+    @EntityGraph(attributePaths = {"category"})
     Optional<Rent> findWithRelationsByRentId(Integer rentId);
-    // 只有成功把 1 改成 0 的請求才算借到 → 擋住同時借
+
     @Modifying(clearAutomatically = true)
     @Query("update Rent r set r.rentEnable = false where r.rentId = :id and r.rentEnable = true")
     int markBorrowed(Integer id);

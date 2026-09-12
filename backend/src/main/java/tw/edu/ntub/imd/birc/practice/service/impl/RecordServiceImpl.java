@@ -31,25 +31,23 @@ public class RecordServiceImpl extends BaseServiceImpl<RecordsBean, Records, Int
 
     @Override
     public RecordsBean borrow(RecordsBean bean) {
-        Rent rent = rentDAO.findById(bean.getRentId())
+        rentDAO.findById(bean.getRentId())
                 .orElseThrow(() -> new ResourceNotFoundException("物品不存在"));
-        if (rent.getUserId().equals(bean.getUserId()))
+        if (bean.getBorrowUserId().equals(bean.getLendUserId()))
             throw new InvalidFormException("不能借用自己分享的物品");
         if (bean.getDueDate() == null || bean.getDueDate().isBefore(LocalDateTime.now()))
             throw new InvalidFormException("預計歸還日必須晚於現在");
 
-        // 原子搶借：改到 1→0 的人才算借到，其餘擋掉
         if (rentDAO.markBorrowed(bean.getRentId()) == 0)
             throw new ResourceConflictException("此物品已被借出");
 
-        LocalDateTime now = LocalDateTime.now();
         Records r = new Records();
         r.setRentId(bean.getRentId());
-        r.setUserId(bean.getUserId());
-        r.setCategoryId(rent.getCategoryId());
-        r.setEnable(true);                 // 借用中
+        r.setLendUserId(bean.getLendUserId());
+        r.setBorrowUserId(bean.getBorrowUserId());
+        r.setEnable(true);
         r.setReturnDate(bean.getDueDate());
-        r.setCreateTime(now);
+        r.setCreateTime(LocalDateTime.now());
         return recordsTransformer.transferToBean(recordsDAO.save(r));
     }
 
@@ -57,10 +55,9 @@ public class RecordServiceImpl extends BaseServiceImpl<RecordsBean, Records, Int
     public void returnItem(Integer rentId) {
         Records r = recordsDAO.findByRentIdAndEnableTrue(rentId)
                 .orElseThrow(() -> new ResourceNotFoundException("此物品目前沒有借用中的紀錄"));
-        r.setEnable(false);                        // 已歸還
-        r.setModifyTime(LocalDateTime.now());      // 實際歸還時間
+        r.setEnable(false);           // 已歸還（無 modify_time 可記實際時間）
         recordsDAO.save(r);
-        rentDAO.markAvailable(rentId);             // 物品重新上架
+        rentDAO.markAvailable(rentId);
     }
 
     @Override
@@ -93,7 +90,6 @@ public class RecordServiceImpl extends BaseServiceImpl<RecordsBean, Records, Int
         if (bean.getDueDate() != null) {
             r.setReturnDate(bean.getDueDate());   // 只允許改預計歸還日
         }
-        r.setModifyTime(LocalDateTime.now());
         recordsDAO.save(r);
     }
 }

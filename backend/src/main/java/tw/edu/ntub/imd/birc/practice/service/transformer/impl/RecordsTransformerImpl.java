@@ -10,31 +10,28 @@ import java.time.LocalDateTime;
 @Component
 public class RecordsTransformerImpl implements BeanEntityTransformer<RecordsBean, Records> {
 
-    @Override
-    public Records transferToEntity(RecordsBean bean) {
+    public Records transferToEntity(RecordsBean b) {
         Records r = new Records();
-        r.setRecordsId(bean.getId());
-        r.setRentId(bean.getRentId());
-        r.setUserId(bean.getUserId());
-        r.setCategoryId(bean.getCategoryId());
-        r.setReturnDate(bean.getDueDate());
+        r.setRecordsId(b.getId());
+        r.setRentId(b.getRentId());
+        r.setLendUserId(b.getLendUserId());
+        r.setBorrowUserId(b.getBorrowUserId());
+        r.setReturnDate(b.getDueDate());
         return r;
     }
 
-    @Override
     public RecordsBean transferToBean(Records r) {
-        RecordsBean bean = new RecordsBean();
-        bean.setId(r.getRecordsId());
-        bean.setRentId(r.getRentId());
-        bean.setUserId(r.getUserId());
-        bean.setCategoryId(r.getCategoryId());
+        RecordsBean b = new RecordsBean();
+        b.setId(r.getRecordsId());
+        b.setRentId(r.getRentId());
+        b.setLendUserId(r.getLendUserId());
+        b.setBorrowUserId(r.getBorrowUserId());
         boolean borrowing = Boolean.TRUE.equals(r.getEnable());
-        bean.setStatus(borrowing ? "BORROWED" : "RETURNED");
-        bean.setOverdue(borrowing && r.getReturnDate() != null
+        b.setStatus(borrowing ? "BORROWED" : "RETURNED");
+        b.setOverdue(borrowing && r.getReturnDate() != null
                 && LocalDateTime.now().isAfter(r.getReturnDate()));
-        bean.setReturnDate(r.getReturnDate());
-        bean.setCreateTime(r.getCreateTime());
-        bean.setModifyTime(r.getModifyTime());
-        return bean;
+        b.setReturnDate(r.getReturnDate());
+        b.setCreateTime(r.getCreateTime());
+        return b;
     }
 }

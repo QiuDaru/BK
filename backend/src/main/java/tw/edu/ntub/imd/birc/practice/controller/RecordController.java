@@ -41,7 +41,8 @@ public class RecordController {
             ObjectData o = arrayData.addObject();
             o.add("recordsId", b.getId());
             o.add("rentId", b.getRentId());
-            o.add("userId", b.getUserId());
+            o.add("borrowUserId", b.getBorrowUserId());
+            o.add("lendUserId", b.getLendUserId());
             o.add("returnDate", b.getReturnDate());
         }
         return ResponseEntityBuilder.success().message("查詢成功").data(arrayData).build();
