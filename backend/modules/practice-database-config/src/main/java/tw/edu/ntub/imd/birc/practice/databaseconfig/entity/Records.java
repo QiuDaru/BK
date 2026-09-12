@@ -4,53 +4,24 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import lombok.*;
 
-@Getter
-@Setter
-@ToString
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "records")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Entity @Table(name = "records")
 public class Records {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "records_id")
     private Integer recordsId;
 
-    @Column(name = "rent_id")
-    private Integer rentId;
+    @Column(name = "rent_id")         private Integer rentId;
+    @Column(name = "lend_user_id")    private Integer lendUserId;   // 出借人
+    @Column(name = "borrow_user_id")  private Integer borrowUserId; // 借用人
 
-    /**
-     * 商家 ID
-     */
-    @Column(name = "user_id")
-    private Integer userId;
-
-    @Column(name = "category_id")
-    private Integer categoryId;
-
-    @Builder.Default
     @Column(name = "enable")
-    private Boolean enable = true;
+    private Boolean enable;           // 1=借用中, 0=已歸還
 
     @Column(name = "return_date")
-    private LocalDateTime returnDate;
+    private LocalDateTime returnDate; // 預計歸還
 
     @Column(name = "create_time")
-    private LocalDateTime createTime;
-
-    @Column(name = "modify_time")
-    private LocalDateTime modifyTime;
-
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rent_id", insertable = false, updatable = false)
-    private Rent rent;
-
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user;
+    private LocalDateTime createTime; // 借出時間
+    // 已移除 category_id / modify_time
 }
