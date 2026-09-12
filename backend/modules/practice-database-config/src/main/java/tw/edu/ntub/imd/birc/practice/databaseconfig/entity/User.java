@@ -22,9 +22,6 @@ public class User {
     @Column(name = "role_id")
     private Integer roleId;
 
-    @Column(name = "file_no")
-    private Integer fileNo;
-
     @Column(name = "chinese_name")
     private String chineseName;
 
