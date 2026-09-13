@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Component
 public final class JwtUtils {
-    @Value("spring.security.jwt.secret")
+    @Value("${spring.security.jwt.secret}")
     private String secret;
 
     public String getToken(UserDetails userDetails) {
