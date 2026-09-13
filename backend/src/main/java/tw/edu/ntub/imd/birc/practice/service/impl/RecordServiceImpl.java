@@ -5,14 +5,13 @@ import tw.edu.ntub.imd.birc.practice.bean.RecordsBean;
 import tw.edu.ntub.imd.birc.practice.databaseconfig.dao.RecordsDAO;
 import tw.edu.ntub.imd.birc.practice.databaseconfig.dao.RentDAO;
 import tw.edu.ntub.imd.birc.practice.databaseconfig.entity.Records;
-import tw.edu.ntub.imd.birc.practice.databaseconfig.entity.Rent;
 import tw.edu.ntub.imd.birc.practice.exception.ResourceConflictException;
 import tw.edu.ntub.imd.birc.practice.exception.ResourceNotFoundException;
 import tw.edu.ntub.imd.birc.practice.exception.form.InvalidFormException;
 import tw.edu.ntub.imd.birc.practice.service.RecordService;
 import tw.edu.ntub.imd.birc.practice.service.transformer.impl.RecordsTransformerImpl;
 import tw.edu.ntub.birc.common.util.CollectionUtils;
-
+import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -29,6 +28,7 @@ public class RecordServiceImpl extends BaseServiceImpl<RecordsBean, Records, Int
         this.rentDAO = rentDAO;
     }
 
+    @Transactional
     @Override
     public RecordsBean borrow(RecordsBean bean) {
         rentDAO.findById(bean.getRentId())
@@ -77,6 +77,7 @@ public class RecordServiceImpl extends BaseServiceImpl<RecordsBean, Records, Int
         return m;
     }
 
+    @Transactional
     @Override
     public RecordsBean save(RecordsBean bean) {
         // 借用就是新增一筆借用紀錄，直接複用 borrow 的完整邏輯
