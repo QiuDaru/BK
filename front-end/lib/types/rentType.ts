@@ -34,13 +34,12 @@ export interface RentDetailResponse {
   data: RentItem;
 }
 
-export type CreateRentInput = {
+export interface CreateRentInput {
   year: number;
   categoryId: RentCategoryId;
   item: string;
   remark: string;
-  photoLink: string;
-};
+}
 
 export interface UpdateRentInput extends Partial<CreateRentInput> {
   id: number;

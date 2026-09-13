@@ -1,8 +1,10 @@
-import React from 'react';
-import { homeContent } from "@/lib/data/home";
-import Link from 'next/link';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-import styles from '@/styles/Components/NavBar.module.scss';
+import { homeContent } from "@/lib/data/home";
+import loginAPI from "@/services/Login/loginAPI";
+import styles from "@/styles/Components/NavBar.module.scss";
 
 export default function SideBar() {
   return (

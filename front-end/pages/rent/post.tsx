@@ -15,28 +15,32 @@ export default function PostRent() {
   const [categoryId, setCategoryId] = useState<RentCategoryId>(4);
   const [year, setYear] = useState(new Date().getFullYear());
   const [remark, setRemark] = useState("");
-  const [photoLink, setPhotoLink] = useState("");
+  const [photo, setPhoto] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const userId = localStorage.getItem("authToken");
+    if (!userId) {
+      alert("請先登入");
+      router.push("/login");
+    }
     e.preventDefault();
 
-    const formData = new FormData();
-
-    formData.append("year", String(year));
-    formData.append("categoryId", String(categoryId));
-    formData.append("item", item);
-    formData.append("remark", remark);
-    formData.append("photoLink", photoLink);
-
-    try {
-      setLoading(true);
-      await rentAPI.createRent(formData);
-      await router.push("/rent");
-    } finally {
-      setLoading(false);
-    }
+  const data = {
+    year,
+    categoryId,
+    item,
+    remark,
   };
+
+  try {
+    setLoading(true);
+    await rentAPI.createRent(data);
+    await router.push("/rent");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <Layout>
@@ -105,13 +109,12 @@ export default function PostRent() {
             </div>
 
             <div className={styles.field}>
-              <label htmlFor="photoLink">照片網址</label>
+             <label htmlFor="photo">物品照片</label>
               <input
                 id="photoLink"
                 type='file'
-                // disabled={true}
-                value={photoLink}
-                onChange={(e) => setPhotoLink(e.target.value)}
+                // disabled={true} 
+                onChange={(e) => setPhoto(e.target.files?.[0] || null)}
                 placeholder="https://example.com/drill.jpg"
               />
             </div>

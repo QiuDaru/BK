@@ -109,11 +109,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         new CustomLoginFilter(authenticationManagerBean(), customAuthenticationSuccessHandler),
                         UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                // @TODO Demo 測完登入後，改用下方 authenticated 版本鎖 API
-                .anyRequest().permitAll()
-                // .antMatchers("/login").permitAll()
-                // .antMatchers(HttpMethod.GET, "/rents", "/rents/**").permitAll()
-                // .anyRequest().authenticated()
+                .antMatchers("/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/rents", "/rents/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))

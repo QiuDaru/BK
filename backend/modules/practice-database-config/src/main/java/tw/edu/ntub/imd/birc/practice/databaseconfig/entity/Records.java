@@ -23,5 +23,10 @@ public class Records {
 
     @Column(name = "create_time")
     private LocalDateTime createTime; // 借出時間
-    // 已移除 category_id / modify_time
+
+    @Column(name = "borrow_photo_link")
+    private String borrowPhotoLink;
+
+    @Column(name = "lend_photo_link")
+    private String returnPhotoLink;
 }

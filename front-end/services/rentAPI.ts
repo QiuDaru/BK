@@ -11,8 +11,8 @@ const rentAPI = {
     getRent: (id: string): Promise<Response<RentItem>> =>
         API.get(`${BASE_URL}/${id}`).then((res) => res.data),
 
-    createRent: (formData: FormData): Promise<Response<CreateRentInput>> =>
-        API.post(`${BASE_URL}`, formData).then((res) => res.data),
+    createRent: (data: CreateRentInput): Promise<Response<CreateRentInput>> =>
+  API.post(`${BASE_URL}`, data).then((res) => res.data),
 
     deleteRent: (id: string): Promise<Response<null>> =>
         API.delete(`${BASE_URL}/${id}`).then((res) => res.data),

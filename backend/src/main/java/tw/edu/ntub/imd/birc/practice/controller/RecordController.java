@@ -28,9 +28,11 @@ public class RecordController {
         return ResponseEntityBuilder.success().message("借用成功").build();
     }
 
-    @PatchMapping(path = "/{rentId}/return")    // 歸還
-    public ResponseEntity<String> returnItem(@PathVariable Integer rentId) {
-        recordService.returnItem(rentId);
+    @PatchMapping(path = "/{rentId}/return")
+    public ResponseEntity<String> returnItem(@PathVariable Integer rentId,
+                                             @RequestBody(required = false) RecordsBean bean) {
+        String returnPhotoLink = (bean != null) ? bean.getReturnPhotoLink() : null;
+        recordService.returnItem(rentId, returnPhotoLink);
         return ResponseEntityBuilder.success().message("歸還成功").build();
     }
 
