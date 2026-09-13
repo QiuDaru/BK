@@ -1,15 +1,5 @@
 import API from "@/lib/api/api";
-
-export interface BorrowInput {
-  rentId: number;
-  dueDate: string;
-}
-
-export interface BorrowResponse {
-  result: boolean;
-  errorCode: string;
-  message: string;
-}
+import { BorrowResponse, BorrowInput } from "@/lib/types/borrowType";
 
 const borrowAPI = {
   borrow: async (data: BorrowInput): Promise<BorrowResponse> => {
