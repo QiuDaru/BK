@@ -35,7 +35,9 @@ export default function Rent() {
           </div>
           <div className={styles.cardGrid}>
             {rentItems.map((item) => {
-              return <ItemCard rent={item} onClick={setSelectedRent} />;
+              return (
+                <ItemCard key={item.id} rent={item} onClick={setSelectedRent} />
+              );
             })}
           </div>
         </div>
