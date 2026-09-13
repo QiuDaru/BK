@@ -1,6 +1,7 @@
 package tw.edu.ntub.imd.birc.practice.config.provider;
 
 import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
@@ -24,8 +25,13 @@ public class CustomAuthenticationProvider extends AbstractUserDetailsAuthenticat
     }
 
     @Override
-    protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
-
+    protected void additionalAuthenticationChecks(UserDetails userDetails,
+                                                  UsernamePasswordAuthenticationToken authentication) {
+        if (authentication.getCredentials() == null)
+            throw new BadCredentialsException("請輸入密碼");
+        String rawPassword = authentication.getCredentials().toString();
+        if (!passwordEncoder.matches(rawPassword, userDetails.getPassword()))
+            throw new BadCredentialsException("帳號或密碼錯誤");
     }
 
     @Override

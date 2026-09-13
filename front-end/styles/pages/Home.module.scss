@@ -1,0 +1,265 @@
+@use "@/styles/base/variables" as *;
+.page {
+  min-height: 100vh;
+  background: $background;
+  color: $text;
+}
+
+
+.hero {
+  min-height: 330px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 70px 20px 48px;
+}
+
+.heroInner {
+  width: min(800px, 100%);
+}
+
+.eyebrow,
+.sectionHeader span,
+.guideLabel {
+  margin: 0 0 18px;
+  color: $accent;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(42px, 5vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -0.055em;
+  font-weight: 850;
+}
+
+.subtitle {
+  margin: 24px 0 0;
+  color: $muted;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.actions {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 30px 0 0;
+}
+
+.sectionHeader {
+  margin-bottom: 24px;
+
+  span {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: -0.035em;
+  }
+}
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.actionCard {
+  min-height: 370px;
+  padding: 36px;
+  border: 1px solid $line;
+  border-radius: 28px;
+  background: $surface;
+  color: $text;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  box-shadow: $shadow;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: $accent;
+    box-shadow: 0 22px 50px rgba(22, 28, 25, .1);
+
+    .arrow {
+      transform: translate(3px, -3px);
+    }
+  }
+}
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: $softAccent;
+  font-size: 28px;
+}
+
+.arrow {
+  color: $muted;
+  font-size: 25px;
+  transition: transform .2s ease;
+}
+
+.cardContent {
+  margin-top: auto;
+
+  h3 {
+    margin: 0;
+    font-size: 34px;
+    letter-spacing: -0.045em;
+  }
+
+  p {
+    max-width: 430px;
+    margin: 14px 0 0;
+    color: $muted;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+}
+
+.cardLink {
+  margin-top: 28px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.guide {
+  width: min(1200px, calc(100% - 40px));
+  margin: 44px auto 0;
+  padding: 30px 0 64px;
+  border-top: 1px solid $line;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  h2 {
+    margin: 0;
+    font-size: 21px;
+    letter-spacing: -0.025em;
+  }
+
+  a {
+    flex: 0 0 auto;
+    color: $text;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+
+    span {
+      margin-left: 10px;
+    }
+  }
+}
+
+.footer {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 22px 0 30px;
+  border-top: 1px solid $line;
+  display: flex;
+  justify-content: space-between;
+  color: $muted;
+  font-size: 12px;
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    height: 64px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .hero {
+    min-height: 285px;
+    padding: 56px 20px 40px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+    line-height: 1.18;
+  }
+
+  .subtitle {
+    margin-top: 18px;
+    font-size: 16px;
+  }
+
+  .actions {
+    padding-top: 18px;
+  }
+
+  .sectionHeader {
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 25px;
+    }
+  }
+
+  .actionGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .actionCard {
+    min-height: 300px;
+    padding: 28px;
+    border-radius: 23px;
+  }
+
+  .cardContent h3 {
+    font-size: 30px;
+  }
+
+  .cardContent p {
+    font-size: 16px;
+  }
+
+  .guide {
+    width: min(100% - 40px, 1200px);
+    margin-top: 32px;
+    padding: 28px 0 48px;
+    display: block;
+
+    h2 {
+      font-size: 19px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 22px;
+    }
+  }
+
+  .footer {
+    display: block;
+
+    span {
+      display: block;
+
+      & + span {
+        margin-top: 8px;
+      }
+    }
+  }
+}
