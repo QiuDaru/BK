@@ -1,7 +1,10 @@
-import Layout from "@/components/Layout/Layout";
+import Layout from "@/Components/Layout/Layout";
 import { homeContent } from "@/lib/data/home";
+import EnrollmentTimeline from "@/Components/home/EnrollmentTimeline";
+import { mockEnrollments } from "@/lib/data/enrollments";
 
 import styles from "@/styles/pages/Home.module.scss";
+
 export default function Home() {
   const { hero, actions, guide } = homeContent;
 
@@ -34,8 +37,24 @@ export default function Home() {
                     <div className={styles.icon}>
                       {item.icon}
                     </div>
+
                     <span className={styles.arrow}>↗</span>
                   </div>
+
+                  {/* 只有「學技能」(href === /teach) 這張卡片顯示報名時間軸 */}
+                  {item.href === "/teach" && (
+                    <div
+                      style={{
+                        flex: 1,
+                        display: "flex",
+                        alignItems: "flex-start",
+                        padding: "12px 0",
+                      }}
+                    >
+                      <EnrollmentTimeline enrollments={mockEnrollments} />
+                    </div>
+                  )}
+
                   <div className={styles.cardContent}>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>

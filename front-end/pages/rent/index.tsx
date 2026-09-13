@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Layout from "@/components/Layout/Layout";
+import Layout from "@/Components/Layout/Layout";
 import styles from "@/styles/pages/rent/Rent.module.scss";
-import ItemCard from "@/components/rent/ItemCard";
+import ItemCard from "@/Components/rent/ItemCard";
 
 import rentAPI from "@/services/rentAPI";
 import { RentItem } from "@/lib/types/rentType";
-import RentModal from "@/components/rent/RentModal";
+import RentModal from "@/Components/rent/RentModal";
 import { useRouter } from "next/router";
 
 export default function Rent() {

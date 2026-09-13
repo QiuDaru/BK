@@ -1,0 +1,46 @@
+.wrapper {
+  padding: 48px 60px;
+  width: 100%;
+  margin: 0 50px;
+}
+
+.pageTitle {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;   // 只有標題置中
+}
+
+.dateLabel {
+  color: #666;
+  margin-bottom: 32px;
+  text-align: center;   // 只有今日日期置中
+}
+
+.list {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  // 沒有 text-align，維持左對齊
+}
+.teachButton {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 30px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
