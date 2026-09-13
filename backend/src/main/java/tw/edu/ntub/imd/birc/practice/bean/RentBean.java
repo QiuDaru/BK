@@ -12,6 +12,8 @@ public class RentBean {
     @NotBlank(message = "物品名稱不得為空") private String item;
     private String remark;
     private String photoLink;
+    private Integer ownerId;     // 物主 id（回應）
+    private String ownerName;    // 物主姓名（回應）
     // 唯讀
     private Boolean rentEnable;
     private LocalDateTime createTime;

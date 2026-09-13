@@ -1,10 +1,15 @@
 package tw.edu.ntub.imd.birc.practice.service.impl;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import tw.edu.ntub.imd.birc.practice.bean.RecordsBean;
 import tw.edu.ntub.imd.birc.practice.databaseconfig.dao.RecordsDAO;
 import tw.edu.ntub.imd.birc.practice.databaseconfig.dao.RentDAO;
+import tw.edu.ntub.imd.birc.practice.databaseconfig.dao.UserDAO;
 import tw.edu.ntub.imd.birc.practice.databaseconfig.entity.Records;
+import tw.edu.ntub.imd.birc.practice.databaseconfig.entity.Rent;
+import tw.edu.ntub.imd.birc.practice.databaseconfig.entity.User;
 import tw.edu.ntub.imd.birc.practice.exception.ResourceConflictException;
 import tw.edu.ntub.imd.birc.practice.exception.ResourceNotFoundException;
 import tw.edu.ntub.imd.birc.practice.exception.form.InvalidFormException;
@@ -20,20 +25,32 @@ public class RecordServiceImpl extends BaseServiceImpl<RecordsBean, Records, Int
     private final RecordsDAO recordsDAO;
     private final RecordsTransformerImpl recordsTransformer;
     private final RentDAO rentDAO;
+    private final UserDAO userDAO;
 
-    public RecordServiceImpl(RecordsDAO dao, RecordsTransformerImpl transformer, RentDAO rentDAO) {
+    public RecordServiceImpl(RecordsDAO dao, RecordsTransformerImpl transformer, RentDAO rentDAO, UserDAO userDAO) {
         super(dao, transformer);
         this.recordsDAO = dao;
         this.recordsTransformer = transformer;
         this.rentDAO = rentDAO;
+        this.userDAO = userDAO;
     }
 
     @Transactional
     @Override
     public RecordsBean borrow(RecordsBean bean) {
-        rentDAO.findById(bean.getRentId())
+        Rent rent = rentDAO.findById(bean.getRentId())
                 .orElseThrow(() -> new ResourceNotFoundException("物品不存在"));
-        if (bean.getBorrowUserId().equals(bean.getLendUserId()))
+
+        // 借用人 = 登入者
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = userDAO.findByAccountName(auth.getName())
+                .orElseThrow(() -> new ResourceNotFoundException("登入使用者不存在"));
+        Integer borrowUserId = currentUser.getUserId();
+
+        // 出借人 = 物品的物主（不看前端）
+        Integer lendUserId = rent.getUserId();
+
+        if (borrowUserId.equals(lendUserId))
             throw new InvalidFormException("不能借用自己分享的物品");
         if (bean.getDueDate() == null || bean.getDueDate().isBefore(LocalDateTime.now()))
             throw new InvalidFormException("預計歸還日必須晚於現在");
@@ -43,8 +60,8 @@ public class RecordServiceImpl extends BaseServiceImpl<RecordsBean, Records, Int
 
         Records r = new Records();
         r.setRentId(bean.getRentId());
-        r.setLendUserId(bean.getLendUserId());
-        r.setBorrowUserId(bean.getBorrowUserId());
+        r.setLendUserId(lendUserId);
+        r.setBorrowUserId(borrowUserId);
         r.setEnable(true);
         r.setReturnDate(bean.getDueDate());
         r.setCreateTime(LocalDateTime.now());
