@@ -1,0 +1,29 @@
+.card {
+  border-bottom: 1px solid #eee;
+  padding: 16px 0;
+}
+.header {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.time {
+  font-weight: 700;
+  font-size: 18px;
+}
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+.detail {
+  display: flex;
+  flex-direction: column;
+  color: #555;
+  gap: 2px;
+}
+.timeRange {
+  font-size: 13px;
+  color: #999;
+}

@@ -1,41 +1,3 @@
-import { VscLightbulbSparkle } from "react-icons/vsc";
-import { LuDrill } from "react-icons/lu";
-
-export const homeContent = {
-  brand: "社區共好",
-  footer: "分享工具・學習技能・連結社區",
-  hero: {
-    eyebrow: "COMMUNITY SHARING",
-    title: "讓社區裡的工具與技能，被更多人看見。",
-    subtitle: "分享工具・學習技能・連結社區",
-  },
-  actions: {
-    title: "你現在想做什麼？",
-    items: [
-      {
-        icon: <VscLightbulbSparkle />,
-        title: "借工具",
-        description: "找到或出借附近的工具與設備。",
-        cta: "工具專區 →",
-        href: "/rent",
-      },
-      {
-        icon: <LuDrill />,
-        title: "學技能",
-        description: "找到社區裡的人開設的課程與技能，或自己教！",
-        cta: "課程專區 →",
-        href: "/teach",
-      },
-    ],
-  },
-  guide: {
-    label: "NEW TO SHARING?",
-    title: "不確定怎麼分享嗎？",
-    cta: "了解分享前需要準備什麼",
-    href: "/share-guide",
-  },
-};
-
 export interface Instructor {
   id: string;
   name: string;
@@ -44,12 +6,13 @@ export interface Instructor {
 
 export interface ClassSession {
   id: string;
+  date: string;          // "2026-09-13"
   startTime: string;
   endTime: string;
   title: string;
-  description: string;      // 課堂基本介紹
+  description: string;
   instructorId: string;
-  isCompleted: boolean;      // 這堂課是否已經上完（決定能不能按讚）
+  isCompleted: boolean;   // 課程是否已結束，控制能不能按讚
 }
 
 export interface DayItem {
@@ -79,6 +42,7 @@ export const mockDays: DayItem[] = Array.from({ length: 7 }).map((_, i) => {
 export const mockClasses: ClassSession[] = [
   {
     id: "1",
+    date: mockDays[0].date,
     startTime: "10:00",
     endTime: "11:15",
     title: "課程名稱 A",
@@ -88,6 +52,7 @@ export const mockClasses: ClassSession[] = [
   },
   {
     id: "2",
+    date: mockDays[0].date,
     startTime: "11:30",
     endTime: "12:45",
     title: "課程名稱 B",
@@ -97,6 +62,7 @@ export const mockClasses: ClassSession[] = [
   },
   {
     id: "3",
+    date: mockDays[0].date,
     startTime: "13:00",
     endTime: "14:15",
     title: "課程名稱 C",
