@@ -40,5 +40,12 @@ public class Rent {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
-    // 已移除 user / photo 關聯
+    //  photo 關聯
+    @Column(name = "user_id")
+    private Integer userId;          // 物主（出借人）
+
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;               // 讀取物主資料用
 }
