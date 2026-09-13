@@ -35,10 +35,11 @@ public class CustomAuthenticationProvider extends AbstractUserDetailsAuthenticat
     }
 
     @Override
-    protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) {
+    protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
         UserDetails userDetails = userDetailsService.loadUserByUsername(authentication.getName());
-        if (!userDetails.isEnabled())
+        if (!userDetails.isEnabled()) {
             throw new AuthenticationServiceException("您的帳號已被停權");
+        }
         return userDetails;
     }
 }
