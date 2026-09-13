@@ -1,28 +1,44 @@
 .card {
-  border-bottom: 1px solid #eee;
-  padding: 16px 0;
-}
-.header {
   display: flex;
-  gap: 12px;
-  align-items: baseline;
-  margin-bottom: 8px;
+  gap: 20px;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 20px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
 }
+
+.timeColumn {
+  width: 70px;
+  flex-shrink: 0;
+}
+
 .time {
   font-weight: 700;
   font-size: 18px;
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
 .title {
   font-size: 20px;
   font-weight: 700;
   margin: 0;
+  color: #3a3a4d;
 }
-.detail {
-  display: flex;
-  flex-direction: column;
-  color: #555;
-  gap: 2px;
-}
+
 .timeRange {
   font-size: 13px;
   color: #999;

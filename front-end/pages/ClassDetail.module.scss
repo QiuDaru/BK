@@ -1,49 +1,37 @@
-.pageWrapper {
-  display: flex;
-  justify-content: center;
-  padding: 60px 40px;
-}
-
 .container {
-  width: 100%;
-  max-width: 720px;
+  padding: 16px;
 }
-
 .title {
-  font-size: 30px;
-  margin-bottom: 12px;
+  margin-bottom: 4px;
 }
 .meta {
   color: #888;
-  margin-bottom: 28px;
-  font-size: 15px;
+  margin-bottom: 16px;
 }
 .description {
-  margin-bottom: 40px;
-  line-height: 1.8;
-  font-size: 16px;
+  margin-bottom: 24px;
+  line-height: 1.6;
 }
 .enrollButton {
   background: #3a3a4d;
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 12px 28px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 15px;
 }
 .enrolledText {
   color: green;
   margin-bottom: 16px;
 }
 .likeSection {
-  margin-top: 40px;
+  margin-top: 24px;
 }
 .likeButton {
   background: #f2f2f2;
   border: none;
   border-radius: 6px;
-  padding: 10px 20px;
+  padding: 8px 16px;
   cursor: pointer;
 
   &:disabled {

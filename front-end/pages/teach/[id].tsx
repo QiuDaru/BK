@@ -33,8 +33,9 @@ export default function ClassDetailPage() {
     setLikeCount((c) => c + 1);
   };
 
-  return (
-    <Layout>
+return (
+  <Layout>
+    <div className={styles.pageWrapper}>
       <div className={styles.container}>
         <h2 className={styles.title}>{session.title}</h2>
         <p className={styles.meta}>
@@ -64,6 +65,6 @@ export default function ClassDetailPage() {
           </div>
         )}
       </div>
-    </Layout>
-  );
-}
+    </div>
+  </Layout>
+)}
