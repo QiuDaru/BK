@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import styles from '@/styles/Components/NavBar.module.scss';
 
-export default function SideBar() {  
+export default function NavBar() {  
   return (
     <header className={styles.navbar}>
           <div className={styles.navInner}>
