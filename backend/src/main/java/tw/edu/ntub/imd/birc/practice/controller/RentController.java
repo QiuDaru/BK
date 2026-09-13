@@ -30,6 +30,8 @@ public class RentController {
             obj.add("categoryName", bean.getCategoryName());
             obj.add("photoLink", bean.getPhotoLink());
             obj.add("remark", bean.getRemark());
+            obj.add("ownerId", bean.getOwnerId());
+            obj.add("ownerName", bean.getOwnerName());
         }
         return ResponseEntityBuilder.success().message("查詢成功").data(arrayData).build();
     }
@@ -45,6 +47,8 @@ public class RentController {
         obj.add("photoLink", bean.getPhotoLink());
         obj.add("remark", bean.getRemark());
         obj.add("rentEnable", bean.getRentEnable());
+        obj.add("ownerId", bean.getOwnerId());
+        obj.add("ownerName", bean.getOwnerName());
         return ResponseEntityBuilder.success().message("查詢成功").data(obj).build();
     }
 

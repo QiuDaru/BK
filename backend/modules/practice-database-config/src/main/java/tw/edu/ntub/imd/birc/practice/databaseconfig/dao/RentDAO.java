@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RentDAO extends BaseDAO<Rent, Integer> {
-    @EntityGraph(attributePaths = {"category"})
+    @EntityGraph(attributePaths = {"category", "user"})
     List<Rent> findByRentEnableTrueOrderByCreateTimeDesc();
 
-    @EntityGraph(attributePaths = {"category"})
+    @EntityGraph(attributePaths = {"category", "user"})
     Optional<Rent> findWithRelationsByRentId(Integer rentId);
 
     @Modifying(clearAutomatically = true)

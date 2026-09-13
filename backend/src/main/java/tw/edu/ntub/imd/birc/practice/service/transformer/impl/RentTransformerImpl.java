@@ -30,6 +30,8 @@ public class RentTransformerImpl implements BeanEntityTransformer<RentBean, Rent
         b.setRentEnable(r.getRentEnable());
         b.setCreateTime(r.getCreateTime());
         if (r.getCategory() != null) b.setCategoryName(r.getCategory().getCategory());
+        b.setOwnerId(r.getUserId());                                   // ← 新增
+        if (r.getUser() != null) b.setOwnerName(r.getUser().getChineseName()); // ← 新增
         return b;
     }
 }
