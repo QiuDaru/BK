@@ -11,6 +11,8 @@ public class RecordsBean {
     private Integer lendUserId;
     @NotNull(message = "預計歸還日不得為空") private LocalDateTime dueDate;
     private Integer borrowUserId;
+    private String borrowPhotoLink;
+    private String returnPhotoLink;
     // 唯讀
     private String status;
     private boolean overdue;

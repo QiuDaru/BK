@@ -32,6 +32,8 @@ public class RecordsTransformerImpl implements BeanEntityTransformer<RecordsBean
                 && LocalDateTime.now().isAfter(r.getReturnDate()));
         b.setReturnDate(r.getReturnDate());
         b.setCreateTime(r.getCreateTime());
+        b.setBorrowPhotoLink(r.getBorrowPhotoLink());
+        b.setReturnPhotoLink(r.getReturnPhotoLink());
         return b;
     }
 }
