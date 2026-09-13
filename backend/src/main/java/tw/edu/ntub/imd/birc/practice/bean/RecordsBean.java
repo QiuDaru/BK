@@ -9,8 +9,8 @@ public class RecordsBean {
     private Integer id;
     @NotNull(message = "物品不得為空")   private Integer rentId;
     @NotNull(message = "出借人不得為空") private Integer lendUserId;
-    @NotNull(message = "借用人不得為空") private Integer borrowUserId;
     @NotNull(message = "預計歸還日不得為空") private LocalDateTime dueDate;
+    private Integer borrowUserId;
     // 唯讀
     private String status;
     private boolean overdue;
