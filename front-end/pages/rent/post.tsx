@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Layout from "@/components/Layout/Layout";
+import Layout from "@/Components/Layout/Layout";
 import rentAPI from "@/services/rentAPI";
 import {
   RentCategoryId,

@@ -1,53 +1,48 @@
-.pageWrapper {
-  display: flex;
-  justify-content: center;
-  padding: 60px 40px;
-}
+@use "../theme" as theme;
 
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
   width: 100%;
-  max-width: 720px;
+  height: 100%;
+  gap: 20px;
 }
 
 .title {
-  font-size: 30px;
-  margin-bottom: 12px;
+  font-size: 26px;
+  font-weight: 700;
+  color: theme.$text;
+  margin-top: 12px;
 }
+
 .meta {
-  color: #888;
-  margin-bottom: 28px;
-  font-size: 15px;
-}
-.description {
-  margin-bottom: 40px;
-  line-height: 1.8;
   font-size: 16px;
+  color: theme.$text;
+  opacity: 0.75;
 }
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: theme.$text;
+  flex-grow: 1;
+}
+
 .enrollButton {
-  background: #3a3a4d;
+  width: 100%;
+  background: #000;
   color: #fff;
   border: none;
-  border-radius: 6px;
-  padding: 12px 28px;
-  cursor: pointer;
-  font-size: 15px;
-}
-.enrolledText {
-  color: green;
-  margin-bottom: 16px;
-}
-.likeSection {
-  margin-top: 40px;
-}
-.likeButton {
-  background: #f2f2f2;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 17px;
+  font-weight: 600;
   cursor: pointer;
 
-  &:disabled {
-    color: #999;
-    cursor: not-allowed;
+  &:hover {
+    opacity: 0.85;
   }
 }

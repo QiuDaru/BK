@@ -1,5 +1,5 @@
 import Head from "next/head";
-import SideBar from "@/components/Layout/NavBar";
+import SideBar from "@/Components/Layout/NavBar";
 import styles from "@/styles/Components/Layout.module.scss";
 
 export default function Layout({

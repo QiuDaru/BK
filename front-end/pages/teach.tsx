@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
-import Layout from "@/components/Layout/Layout";
-import DateStrip from "@/components/Teach/DateStrip";
-import ClassCard from "@/components/Teach/ClassCard";
-import { mockDays, mockClasses } from "@/lib/data/teach";
+import Layout from "@/Components/Layout/Layout";
+import DateStrip from "@/Components/Teach/DateStrip";
+import ClassCard from "@/Components/Teach/ClassCard";
+import Modal from "@/Components/common/Modal";
+import ClassDetailModalContent from "@/Components/Teach/ClassDetailModalContent";
+import { mockDays, mockClasses } from "@/lib/data/home";
 import styles from "@/styles/Pages/Teach.module.scss";
 
 export default function TeachPage() {
   const [selectedDate, setSelectedDate] = useState(mockDays[0].date);
-  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const classesForDay = mockClasses.filter((c) => c.date === selectedDate);
 
@@ -31,16 +32,22 @@ export default function TeachPage() {
             <p style={{ color: "#999" }}>這天沒有課程</p>
           ) : (
             classesForDay.map((session) => (
-              <div
-                key={session.id}
-                onClick={() => router.push(`/teach/${session.id}`)}
-              >
-                <ClassCard session={session} />
-              </div>
+              <ClassCard key={session.id} session={session} />
             ))
           )}
         </div>
       </div>
+
+      <button
+        className={styles.teachButton}
+        onClick={() => setIsModalOpen(true)}
+      >
+        我要教課
+      </button>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ClassDetailModalContent />
+      </Modal>
     </Layout>
   );
 }
