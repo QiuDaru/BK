@@ -1,0 +1,228 @@
+@import "./base/variables";
+
+.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: $background;
+  color: $text;
+
+  .userLogin {
+    width: 100%;
+    max-width: 460px;
+    padding: 48px;
+    background: $surface;
+    border: 1px solid $line;
+    border-radius: 16px;
+    box-shadow: $shadow;
+
+    .noticeBanner {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      margin-bottom: 28px;
+      background: $softAccent;
+      border-left: 3px solid $accent;
+      border-radius: 6px;
+      color: $accent;
+      font-size: 14px;
+      line-height: 1.5;
+
+      .noticeIcon {
+        flex-shrink: 0;
+        font-size: 14px;
+      }
+    }
+
+    h1 {
+      margin: 0 0 32px;
+      color: $text;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.5px;
+    }
+
+    .inputContain {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .editBox {
+        position: relative;
+        width: 100%;
+        margin-bottom: 24px;
+
+        .passwordWrapper {
+          position: relative;
+          width: 100%;
+          display: flex;
+          align-items: center;
+        }
+
+        input {
+          width: 100%;
+          height: 56px;
+          box-sizing: border-box;
+          padding: 0 48px 0 16px;
+          border: 1px solid $line;
+          border-radius: 8px;
+          outline: none;
+          background: $surface;
+          color: $text;
+          font-size: 16px;
+          transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+
+          &::placeholder {
+            color: $muted;
+          }
+
+          &:focus {
+            border-color: $accent;
+            box-shadow: 0 0 0 3px rgba(47, 118, 85, 0.1);
+          }
+        }
+
+        p {
+          position: absolute;
+          top: -8px;
+          left: 12px;
+          z-index: 1;
+          margin: 0;
+          padding: 0 5px;
+          background: $surface;
+          color: $muted;
+          font-size: 12px;
+          line-height: 1;
+        }
+
+        .passwordToggle {
+          position: absolute;
+          top: 50%;
+          right: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 4px;
+          transform: translateY(-50%);
+          border: none;
+          background: transparent;
+          color: $muted;
+          font-size: 18px;
+          cursor: pointer;
+
+          &:hover {
+            background: transparent;
+            color: $accent;
+          }
+        }
+      }
+
+      .loginBtn {
+        width: 100%;
+        height: 54px;
+        margin-top: 4px;
+        border: 1px solid $accent;
+        border-radius: 8px;
+        background: $accent;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          background-color 0.2s ease,
+          color 0.2s ease,
+          transform 0.2s ease;
+
+        &:hover {
+          background: $surface;
+          color: $accent;
+        }
+
+        &:active {
+          transform: translateY(1px);
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+
+      u {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 22px;
+        color: $muted;
+        font-size: 14px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: $accent;
+        }
+
+        .icon {
+          margin-left: 0;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .login {
+    align-items: flex-start;
+    padding: 24px 20px;
+
+    .userLogin {
+      padding: 32px 24px;
+      border-radius: 12px;
+
+      .noticeBanner {
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        margin-bottom: 28px;
+        font-size: 28px;
+      }
+
+      .inputContain {
+        .editBox {
+          margin-bottom: 20px;
+
+          input {
+            height: 52px;
+            font-size: 16px;
+          }
+        }
+
+        .loginBtn {
+          height: 52px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .login {
+    padding: 16px;
+
+    .userLogin {
+      padding: 28px 20px;
+    }
+  }
+}

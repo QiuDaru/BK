@@ -8,15 +8,17 @@ export default function NavBar() {
   return (
     <header className={styles.navbar}>
           <div className={styles.navInner}>
-            <a className={styles.logo} href="/">
-              {homeContent.brand}
-            </a>
+            <Link className={styles.logo} href="/">
+      {homeContent.brand}
+    </Link>
             <nav className={styles.nav}>
               <Link href="/rent">工具</Link>
               <Link href="/teach">課程</Link>
               <Link href="/share">分享</Link>
             </nav>
-            <button className={styles.loginButton}>登入</button>
+            <Link className={styles.loginButton} href="/login">
+      登入
+    </Link>
           </div>
         </header>
   );
